@@ -1,0 +1,30 @@
+﻿<Properties StartupConfiguration="{BC138361-CC49-4B78-A67B-031084A55CA8}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="LandonApi/Controllers/RootController.cs">
+    <Files>
+      <File FileName="LandonApi/Properties/launchSettings.json" Line="31" Column="1" />
+      <File FileName="LandonApi/Startup.cs" Line="28" Column="79" />
+      <File FileName="LandonApi/Controllers/RootController.cs" Line="23" Column="10" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="LandonApi" expanded="True">
+            <Node name="LandonApi" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="RootController.cs" selected="True" />
+              </Node>
+              <Node name="Properties" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.LandonApi PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
