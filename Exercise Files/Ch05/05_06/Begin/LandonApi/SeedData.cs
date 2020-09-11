@@ -2,11 +2,17 @@
 using System.Linq;
 using System.Threading.Tasks;
 using LandonApi.Models;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace LandonApi
 {
     public static class SeedData
     {
+        public static async Task InitializeAsync(IServiceProvider services)
+        {
+            await AddTestData(
+                services.GetRequiredService<HotelApiDbContext>());
+        }
         public static async Task AddTestData(HotelApiDbContext context)
         {
             if (context.Rooms.Any())
