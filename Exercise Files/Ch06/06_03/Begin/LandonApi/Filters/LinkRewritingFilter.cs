@@ -58,6 +58,23 @@ namespace LandonApi.Filters
                 if (rewritten == null) continue;
 
                 linkProperty.SetValue(model, rewritten);
+
+                // Special handling of the hidden Self property
+                // unwrap into the root object
+                if(linkProperty.Name == nameof(Resource.Self))
+                {
+                    allProperties
+                        .SingleOrDefault(p => p.Name == nameof(Resource.Href))
+                        ?.SetValue(model, rewritten.Href);
+
+                    allProperties
+                        .SingleOrDefault(p => p.Name == nameof(Resource.Method))
+                        ?.SetValue(model, rewritten.Method);
+
+                    allProperties
+                        .SingleOrDefault(p => p.Name == nameof(Resource.Relations))
+                        ?.SetValue(model, rewritten.Relations);
+                }
             }
 
             var arrayProperties = allProperties.Where(p => p.PropertyType.IsArray);

@@ -43,9 +43,9 @@ namespace LandonApi.Controllers
         // GET /rooms/openings
         [HttpGet("openings", Name = nameof(GetAllRoomOpenings))]
         [ProducesResponseType(200)]
-        public async Task<ActionResult<Collection<Opening>>> GetAllRoomOpenings()
+        public async Task<ActionResult<Collection<Opening>>> GetAllRoomOpenings([FromQuery]PagingOptions pagingOptions = null)
         {
-            var openings = await _openingService.GetOpeningsAsync();
+            var openings = await _openingService.GetOpeningsAsync(pagingOptions);
 
             var collection = new Collection<Opening>()
             {

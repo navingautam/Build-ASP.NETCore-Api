@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using NSwag.AspNetCore;
+using LandonApi.Services;
 
 namespace LandonApi
 {
@@ -32,6 +33,8 @@ namespace LandonApi
         {
             services.Configure<HotelInfo>(
                 Configuration.GetSection("Info"));
+
+            services.AddScoped<IRoomService, DefaultRoomService>();
 
             // Use in-memory database for quick dev and testing
             // TODO: Swap out for a real database in production
