@@ -26,6 +26,12 @@ namespace LandonApi
                 // Already has data
                 return;
             }
+            context.Rooms.Add(new RoomEntity
+            {
+                Id = Guid.Parse("ee2b83be-91db-4de5-8122-35a9e9195976"),
+                Name = "Driscoll Suite",
+                Rate = 23959
+            });
 
             var oxford = context.Rooms.Add(new RoomEntity
             {
@@ -34,12 +40,7 @@ namespace LandonApi
                 Rate = 10119,
             }).Entity;
 
-            context.Rooms.Add(new RoomEntity
-            {
-                Id = Guid.Parse("ee2b83be-91db-4de5-8122-35a9e9195976"),
-                Name = "Driscoll Suite",
-                Rate = 23959
-            });
+            
 
             var today = DateTimeOffset.Now;
             var start = dateLogicService.AlignStartTime(today);

@@ -24,7 +24,7 @@ namespace LandonApi.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<Opening>> GetOpeningsAsync(PagingOptions pagingOptions)
+        public async Task<PagedResults<Opening>> GetOpeningsAsync(PagingOptions pagingOptions)
         {
             var rooms = await _context.Rooms.ToArrayAsync();
 
@@ -61,7 +61,11 @@ namespace LandonApi.Services
                 .Skip(pagingOptions.Offset.Value)
                 .Take(pagingOptions.Limit.Value);
 
-            return pagedOpenings;
+            return new PagedResults<Opening>
+            {
+                Items = pagedOpenings,
+                TotalSize = allOpenings.Count
+            };
         }
 
         public async Task<IEnumerable<BookingRange>> GetConflictingSlots(

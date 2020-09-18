@@ -47,10 +47,13 @@ namespace LandonApi.Controllers
         {
             var openings = await _openingService.GetOpeningsAsync(pagingOptions);
 
-            var collection = new Collection<Opening>()
+            var collection = new PagedCollection<Opening>()
             {
                 Self = Link.ToCollection(nameof(GetAllRoomOpenings)),
-                Value = openings.ToArray()
+                Value = openings.Items.ToArray(),
+                Size = openings.TotalSize,
+                Offset = pagingOptions.Offset.Value,
+                Limit = pagingOptions.Limit.Value
             };
 
             return collection;
