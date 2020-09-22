@@ -14,5 +14,6 @@ namespace LandonApi.Infrastructure
         public string Value { get; set; }
 
         public bool ValidSyntax { get; set; }
+        public ISearchExpressionProvider ExpressionProvider { get; set; }
     }
 }

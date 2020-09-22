@@ -19,5 +19,19 @@ namespace LandonApi.Infrastructure
 
             return Expression.Constant(justDigits);
         }
+
+        public override Expression GetComparison(MemberExpression left, string op, ConstantExpression right)
+        {
+            switch (op.ToLower())
+            {
+                case "gt": return Expression.GreaterThan(left, right);
+                case "gte": return Expression.GreaterThanOrEqual(left, right);
+                case "lt": return Expression.LessThan(left, right);
+                case "lte": return Expression.LessThanOrEqual(left, right);
+
+                // If nothing matches, fall back to base implementation
+                default: return base.GetComparison(left, op, right);
+            }
+        }
     }
 }
