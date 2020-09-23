@@ -96,11 +96,11 @@ namespace LandonApi.Controllers
 
         // TODO authentication!
         // POST /rooms/{roomId}/bookings
-        [HttpPost("{roomId}/bookings", Name = nameof(CreateBookingForRoom))]
+        [HttpPost("{roomId}/bookings", Name = nameof(CreateBookingForRoomAsync))]
         [ProducesResponseType(404)]
         [ProducesResponseType(400)]
         [ProducesResponseType(201)]
-        public async Task<ActionResult> CreateBookingForRoom(
+        public async Task<ActionResult> CreateBookingForRoomAsync(
             Guid roomId, [FromBody] BookingForm bookingForm)
         {
             var room = await _roomService.GetRoomAsync(roomId);
