@@ -52,6 +52,10 @@ namespace LandonApi
             services
                 .AddMvc(options =>
                 {
+                    options.CacheProfiles.Add("Static", new CacheProfile
+                    {
+                        Duration = 86400
+                    });
                     options.Filters.Add<JsonExceptionFilter>();
                     options.Filters
                         .Add<RequireHttpsOrCloseAttribute>();
