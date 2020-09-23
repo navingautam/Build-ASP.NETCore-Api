@@ -19,6 +19,7 @@ using LandonApi.Services;
 using AutoMapper;
 using LandonApi.Infrastructure;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Identity;
 
 namespace LandonApi
 {
@@ -48,6 +49,9 @@ namespace LandonApi
             // TODO: Swap out for a real database in production
             services.AddDbContext<HotelApiDbContext>(
                 options => options.UseInMemoryDatabase("landondb"));
+
+            // Add ASP.NET Core Identity
+            AddIdentityCoreServices(services);
 
             services
                 .AddMvc(options =>
@@ -123,6 +127,20 @@ namespace LandonApi
             app.UseResponseCaching();
 
             app.UseMvc();
+        }
+
+        private static void AddIdentityCoreServices(IServiceCollection services)
+        {
+            var builder = services.AddIdentityCore<UserEntity>();
+            builder = new IdentityBuilder(
+                builder.UserType,
+                typeof(UserRoleEntity),
+                builder.Services);
+
+            builder.AddRoles<UserRoleEntity>()
+                .AddEntityFrameworkStores<HotelApiDbContext>()
+                .AddDefaultTokenProviders()
+                .AddSignInManager<SignInManager<UserRoleEntity>>();
         }
     }
 }
