@@ -28,7 +28,23 @@ namespace LandonApi.Services
             SortOptions<User, UserEntity> sortOptions,
             SearchOptions<User, UserEntity> searchOptions)
         {
-            throw new NotImplementedException();
+            IQueryable<UserEntity> query = _userManager.Users;
+            query = searchOptions.Apply(query);
+            query = sortOptions.Apply(query);
+
+            var size = await query.CountAsync();
+
+            var items = await query
+                .Skip(pagingOptions.Offset.Value)
+                .Take(pagingOptions.Limit.Value)
+                .ProjectTo<User>(_mappingConfiguration)
+                .ToArrayAsync();
+
+            return new PagedResults<User>
+            {
+                Items = items,
+                TotalSize = size
+            };
         }
     }
 }

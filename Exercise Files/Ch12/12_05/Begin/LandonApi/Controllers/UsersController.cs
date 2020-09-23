@@ -36,8 +36,16 @@ namespace LandonApi.Controllers
 
             // TODO: Authorization check. Is the user an admin?
 
-            // TODO: Return a collection of visible users
-            throw new NotImplementedException();
+            var users = await _userService.GetUsersAsync(
+                pagingOptions, sortOptions, searchOptions);
+
+            var collection = PagedCollection<User>.Create(
+                Link.ToCollection(nameof(GetVisibleUsers)),
+                users.Items.ToArray(),
+                users.TotalSize,
+                pagingOptions);
+
+            return collection;
         }
 
         [Authorize]
